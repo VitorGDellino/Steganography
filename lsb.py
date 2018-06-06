@@ -111,3 +111,5 @@ plt.imshow(image)
 plt.subplot(122)
 plt.imshow(steg_image)
 plt.show()
+
+imageio.imwrite("./out/steg-" + image_name, steg_image)
