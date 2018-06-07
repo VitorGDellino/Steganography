@@ -3,6 +3,20 @@ import imageio
 import math
 import matplotlib.pyplot as plt
 
+#   calculate_error(image, steg_image)
+#   Function that calcules the error between two images
+#   Parameters:
+#       image -> original image
+#       steg_image -> image with a hide message
+#   Return:
+#       error
+def calculate_error(image, steg_image):
+    error = 0.0
+    den = image.shape[0]*image.shape[1]*image.shape[2]
+    error = np.sum(np.multiply((image-steg_image),(image-steg_image)))
+    error = error/den
+    return math.sqrt(error)
+
 # char_to_bin(txt)
 # This function tranforms the ascii txt into binary txt
 # Parameters:
@@ -42,7 +56,6 @@ def change_pixel(image_pixel, char, start, end):
     pixel[1] = int(g, 2)
     pixel[2] = int(b, 2)
 
-
     return pixel
 
 # lsd(image, bin_txt, height, width, txt_size)
@@ -61,8 +74,8 @@ def lsb(image, bin_txt, height, width, txt_size):
         for j in range(0, width-3, 3):
             if(char >= len(bin_txt)): # Testing if the entire txt was hided
                 return image
-            image[i, j] = change_pixel(image[i, j], bin_txt[char], 0, 3) # input the bits
-            image[i, j+1] = change_pixel(image[i, j+1], bin_txt[char], 3, 6) # input the bits
+            image[i, j] = change_pixel(image[i, j], bin_txt[char], 0, 2) # input the bits
+            image[i, j+1] = change_pixel(image[i, j+1], bin_txt[char], 3, 5) # input the bits
             image[i, j+2] = change_pixel(image[i, j+2], bin_txt[char], 6, 8) # input the bits
             char = char + 1
 
@@ -91,6 +104,7 @@ txt_name = str(input()).rstrip()
 
 # Reading the image and text
 image = imageio.imread("./images/"+image_name)
+steg_image = imageio.imread("./images/"+image_name)
 txt = open("./txt/"+txt_name, 'r')
 
 # Transform the ascii txt into binary
@@ -103,7 +117,7 @@ payload = len(bin_txt)*8
 txt.close()
 
 # Performing steganography
-steg_image = steganography(image, bin_txt, payload)
+steg_image = steganography(steg_image, bin_txt, payload)
 
 # Showing the original image and the steg image
 plt.subplot(121)
@@ -112,4 +126,9 @@ plt.subplot(122)
 plt.imshow(steg_image)
 plt.show()
 
-imageio.imwrite("./out/steg-" + image_name, steg_image)
+# Saving the image as PNG, because PNG compression has no data loss
+imageio.imwrite("./images/steg-"+image_name[0:len(image_name)-4]+".png", steg_image)
+print("image saved in .as steg-"+image_name[0:len(image_name)-4]+".png")
+
+#  Calculating the error
+print("Error = ", '%.5f' %calculate_error(image, steg_image))
