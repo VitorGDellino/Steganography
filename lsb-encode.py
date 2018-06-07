@@ -70,9 +70,14 @@ def change_pixel(image_pixel, char, start, end):
 #   steg_image
 def lsb(image, bin_txt, height, width, txt_size):
     char = 0
+    pipe = bin(ord('|'))[2:].zfill(8)
     for i in range(height):
         for j in range(0, width-3, 3):
             if(char >= len(bin_txt)): # Testing if the entire txt was hided
+                # Inserting a pipe, this pipe will work like an EOF
+                image[i, j] = change_pixel(image[i, j], pipe, 0, 2) # input the bits
+                image[i, j+1] = change_pixel(image[i, j+1], pipe, 3, 5) # input the bits
+                image[i, j+2] = change_pixel(image[i, j+2], pipe, 6, 8) # input the bits
                 return image
             image[i, j] = change_pixel(image[i, j], bin_txt[char], 0, 2) # input the bits
             image[i, j+1] = change_pixel(image[i, j+1], bin_txt[char], 3, 5) # input the bits

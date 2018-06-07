@@ -35,11 +35,11 @@ def lsb_decode(image):
     char = 0
     for i in range(height):
         for j in range(0, width-3, 3):
-            if(char >= 77): # Found the complete message
-                return message
             bin += get_char(image[i, j], 7) # Getting the last bit, of all color channel
             bin += get_char(image[i, j + 1], 7) # Getting the last bit, of all color channel
             bin += get_char(image[i, j + 2], -1) # Getting the last bit, of all color channel
+            if(chr(int(bin, 2)) == '|'): # Checking EOF
+                return message
             message += chr(int(bin, 2)) # Convert the binary string in char
             bin = ""
             char = char + 1
