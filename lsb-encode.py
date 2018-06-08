@@ -2,6 +2,7 @@ import numpy as np
 import imageio
 import math
 import matplotlib.pyplot as plt
+import sys
 
 #   calculate_error(image, steg_image)
 #   Function that calcules the error between two images
@@ -101,7 +102,10 @@ def steganography(image, bin_txt, payload):
     if(max_txt_size >= payload): # Testing if the txt fits within image
         return lsb(image, bin_txt, height, width,len(bin_txt))
     else:
-        return "txt is too big for the image"
+        print("Text is too big for the image")
+        print("Text size = ", payload)
+        print("Maximum storage capacity = ", int(max_txt_size))
+        sys.exit(0)
 
 # Input image name and text name
 image_name = str(input()).rstrip()
