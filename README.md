@@ -12,16 +12,16 @@ O tema escolhido para o projeto foi a esteganografia, que visa esconder dados de
 
 ## Exemplos de Imagens
 ![Imagem Montanha](https://github.com/VitorGDellino/Steganography/blob/master/images/mountain.jpg)<br />
-[LINK:](https://wallpapersite.com/nature/reine-lake-mountains-norway-4k-4899.html)<br />
+[LINK](https://wallpapersite.com/nature/reine-lake-mountains-norway-4k-4899.html)<br />
 
 ![Imagem Mar](https://github.com/VitorGDellino/Steganography/blob/master/images/sea.jpg)<br />
-[LINK:](https://br.pinterest.com/pin/24629129192697872)<br />
+[LINK](https://br.pinterest.com/pin/24629129192697872)<br />
 
 ![Imagem Tigre](https://github.com/VitorGDellino/Steganography/blob/master/images/tiger.jpg)<br />
-[LINK:](http://www.img.pink/image/fv)<br />
+[LINK](http://www.img.pink/image/fv)<br />
 
 ![Imagem Cachoeira](https://github.com/VitorGDellino/Steganography/blob/master/images/waterfall.jpg)<br />
-[LINK:](https://wallpapersite.com/nature/tropical-forest-waterfall-hd-4k-6161.html)<br />
+[LINK](https://wallpapersite.com/nature/tropical-forest-waterfall-hd-4k-6161.html)<br />
 
 ## Métodos
 Em princípio iremos implementar o LSB (Least Significant Bits). No nosso caso como esconderemos textos, a técnica utilizada será, utilizar 3 pixeis para esconder uma unica letra (8 bits), pois em cada pixel, existem três canais de cores, vermelho, verde e azul (rgb), assim podemos utilizar 3 bits a cada 1 pixel para esconder uma parte da letra, totalizando 3 pixeis para armazenar a letra completa. Após feito o LSD, pretendemos implementar outro algoritmo ...(descrever o algortimo)... para que ao fim possamos comparar os dois. 
