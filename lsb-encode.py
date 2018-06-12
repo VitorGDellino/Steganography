@@ -137,7 +137,7 @@ plt.show()
 
 # Saving the image as PNG, because PNG compression has no data loss
 imageio.imwrite("./images/steg-"+image_name[0:len(image_name)-4]+".png", steg_image)
-print("image saved in .as steg-"+image_name[0:len(image_name)-4]+".png")
+print("image saved in /images as steg-"+image_name[0:len(image_name)-4]+".png")
 
 #  Calculating the error
 print("Error = ", '%.5f' %calculate_error(image, steg_image))
