@@ -1,5 +1,14 @@
 # Esteganografia
-Projeto final de Processamento de Imagens.
+Projeto final de Processamento de Imagens. Implementado em python 3.
+
+## Usage
+### Encode
+No terminal: python lsb-encode.py<br />
+Na execução: Nome da Imagem a ser utilizada e nome do texto a ser escondido.
+
+### Decode
+No terminal: python lsb-decode.py<br />
+Na execução: Nome da Imagem a ser utilizada que contenha a mensagem escondida e nome do texto onde o resultado será escrito.
 
 ## Contribuidores
 

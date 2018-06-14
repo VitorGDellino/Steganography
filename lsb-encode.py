@@ -3,7 +3,6 @@ import imageio
 import math
 import matplotlib.pyplot as plt
 import sys
-import time
 
 #   calculate_error(image, steg_image)
 #   Function that calcules the error between two images
@@ -108,7 +107,6 @@ def steganography(image, bin_txt, payload):
         print("Maximum storage capacity = ", int(max_txt_size))
         sys.exit(0)
 
-start_total_time = time.time()
 
 # Input image name and text name
 image_name = str(input()).rstrip()
@@ -129,27 +127,27 @@ payload = len(bin_txt)*8
 txt.close()
 
 # Performing steganography
-start_time = time.time()
 steg_image = steganography(steg_image, bin_txt, payload)
-elapsed_time = time.time() - start_time
 
+# Calculate the difference between the two images
 diff_image = image - steg_image
 
 # Showing the original image and the steg image
-#plt.subplot(121)
-#plt.imshow(image)
-#plt.title('Image before the encoding')
-#plt.axis('off')
-#plt.subplot(122)
-#plt.imshow(steg_image)
-#plt.title('Image after the encoding')
-#plt.axis('off')
-#plt.show()
+plt.subplot(121)
+plt.imshow(image)
+plt.title('Image before the encoding')
+plt.axis('off')
+plt.subplot(122)
+plt.imshow(steg_image)
+plt.title('Image after the encoding')
+plt.axis('off')
+plt.show()
 
-#plt.imshow(diff_image)
-#plt.title('Difference between the images')
-#plt.axis('off')
-#plt.show()
+# Showing the difference between the two images
+plt.imshow(diff_image)
+plt.title('Difference between the images')
+plt.axis('off')
+plt.show()
 
 # Saving the image as PNG, because PNG compression has no data loss
 imageio.imwrite("./images/steg-"+image_name[0:len(image_name)-4]+".png", steg_image)
@@ -157,5 +155,3 @@ print("image saved in .as steg-"+image_name[0:len(image_name)-4]+".png")
 
 #  Calculating the error
 print("Error = ", '%.5f' %calculate_error(image, steg_image))
-print("Algorithm time = ", '%.2f' %(elapsed_time), "s")
-print("Total time = ", '%.2f' %(time.time() - start_total_time), "s")
