@@ -31,18 +31,16 @@ def get_char(image_pixel, end):
 def lsb_decode(image):
     (height, width) = image.shape[0:2]
     message = ""
-    bin = ""
-    char = 0
     for i in range(height):
         for j in range(0, width-3, 3):
+            bin = ""
             bin += get_char(image[i, j], 7) # Getting the last bit, of all color channel
             bin += get_char(image[i, j + 1], 7) # Getting the last bit, of all color channel
             bin += get_char(image[i, j + 2], -1) # Getting the last bit, of all color channel
-            if(chr(int(bin, 2)) == '|'): # Checking EOF
+            char = chr(int(bin, 2))
+            if(char == '|'): # Checking EOF
                 return message
-            message += chr(int(bin, 2)) # Convert the binary string in char
-            bin = ""
-            char = char + 1
+            message += char # Add the char into the image
 
     return message
 
