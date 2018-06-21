@@ -98,7 +98,7 @@ def lsb(image, bin_txt, height, width, txt_size):
 #   A message "txt is too big for the image"
 def steganography(image, bin_txt, payload):
     (height, width) = image.shape[0:2]
-    max_txt_size = (height*width*3)
+    max_txt_size = (height*width/3)
     if(max_txt_size >= payload): # Testing if the txt fits within image
         return lsb(image, bin_txt, height, width, len(bin_txt))
     else:
