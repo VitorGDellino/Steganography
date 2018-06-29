@@ -34,7 +34,7 @@ def char_to_bin(txt):
     return bin_txt
 
 # xor(a, b)
-# This function
+# This function returns the corresponding value to the binary function XOR
 def xor(a, b):
     return (a or b) and not (a and b)
 
@@ -53,9 +53,9 @@ def change_pixel(image_pixel, bit):
     g = bin(image_pixel[1])[2:].zfill(8) # g channel in binary
     b = bin(image_pixel[2])[2:].zfill(8) # b channel in binary
 
-    lb_r = random.randint(0, 1)
-    lb_g = random.randint(0, 1)
-    lb_b = int(xor(lb_r, xor(lb_g, int(bit))))
+    lb_r = random.randint(0, 1) # get a random value to the last bit
+    lb_g = random.randint(0, 1) # get a random value to the last bit
+    lb_b = int(xor(lb_r, xor(lb_g, int(bit)))) # calculate the value to the last bit
 
     r = r[0:7] + str(lb_r) # changing the last bit
     g = g[0:7] + str(lb_g) # changing the last bit

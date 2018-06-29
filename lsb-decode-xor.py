@@ -2,6 +2,8 @@ import numpy as np
 import imageio
 import math
 
+# xor(a, b)
+# This function returns the corresponding value to the binary function XOR
 def xor(a, b):
     return (a or b) and not (a and b)
 
@@ -17,7 +19,7 @@ def get_char(image_pixel):
     g = bin(image_pixel[1])[2:].zfill(8) # g channel in binary
     b = bin(image_pixel[2])[2:].zfill(8) # b channel in binary
 
-    bin_char = xor(int(r[7]), xor(int(g[7]), int(b[7])))
+    bin_char = xor(int(r[7]), xor(int(g[7]), int(b[7]))) # calculate the value
 
     return str(int(bin_char))
 
